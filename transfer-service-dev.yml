@@ -1,5 +1,5 @@
-destino.servidor: ''
-destino.puerto: 
-destino.usuario: ''
-destino.password: ''
+destino.servidor: 'test.rebex.net'
+destino.puerto: 22
+destino.usuario: 'demo'
+destino.password: 'password'
 destino.rsa: ''
