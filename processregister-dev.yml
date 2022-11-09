@@ -24,8 +24,6 @@ spring:
     url: jdbc:oracle:thin:@dblikdlo22mxr01.ilm.dev.mx.corp:1660/odmxlik1
     username: dehtmili
     password: "{cipher}8b00192c223b1a21fc26abebddd707a371746794c38e90568de4243740f8019b" #test local
-    #password: "{cipher}ffb0a2a7ead6b9abecd2e37beebaeb5c188633191996eb2a0bdff2d2d1f99598" #Lik318#22UAbL
-    #password: Lik318#22UAbL
     driver-class-name: oracle.jdbc.OracleDriver
   jpa:
     hibernate:
