@@ -1,0 +1,59 @@
+#spring:
+#  application:
+#    name: processregister-service
+#  profiles:
+#    active: ${SPRING_APPLICATION_PROFILE}  
+    
+#--spring.config.location=/config/processregistry-service.yml
+#processregistry-service-dev.yml
+
+#####  Configuracion para conexion de base de datos  ####
+
+#DATASOURCE Oracle
+#spring:
+#  application:
+#    name: processregister-service
+#  profiles:
+#    active: ${SPRING_APPLICATION_PROFILE}
+server:
+  port: 8081    
+spring:
+  application:
+    name: processregister-service
+  datasource:
+    url: jdbc:oracle:thin:@dblikdlo22mxr01.ilm.dev.mx.corp:1660/odmxlik1
+    username: dehtmili
+    #password: "{cipher}8b00192c223b1a21fc26abebddd707a371746794c38e90568de4243740f8019b" #test local
+    password: "{cipher}ffb0a2a7ead6b9abecd2e37beebaeb5c188633191996eb2a0bdff2d2d1f99598" #Lik318#22UAbL
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    properties: 
+      hibernate.dialect: org.hibernate.dialect.OracleDialect
+      show-sql: true
+proccessregistry-service:
+  modulesManager: http://localhost:8082/modulesmanager/insertMetadata
+  parametryService: http://localhost:8085/parametry/queryParameters
+  #modulesManager: https://modulesmanager-service-mx-upig-dev.appls.mex01.mex.dev.mx1.paas.cloudcenter.corp/modulesmanager/insertMetadata
+  
+logadapter:
+  logservice:
+    amq:
+      url:  tcp://logservice-amq-tcp:61616?jms.prefetchPolicy.queuePrefetch=1&jms.redeliveryPolicy.maximumRedeliveries=2
+      queue: mxlogservice-dev-queue
+      security:
+        authorization: dXNybHNtcTpCcjBrM3JMMGdTM3J2MWMzNG1R
+    ws:
+      url: http://mxlogservice-dev-log-service:8080/selectorLogService
+    adapters:
+      audit:
+        canalprimario: CONSOLA
+        canalcontingente: CONSOLA
+      business:
+        canalprimario: CONSOLA
+        canalcontingente: CONSOLA
+  worker-config:
+    id-organizacion-estatica: 6014-MX-UPIG-PROCESS-REGISTRY
+    worker-class: mx.santander.pid.logadapter.core.worker.LogAdapterExtractorAPI
